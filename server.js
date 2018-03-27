@@ -63,6 +63,6 @@ ws.on('message', function incoming(data){
 });
 
 app.use(express.static(path.join(__dirname, '/public/')))  
-var server = http.createServer(app).listen(port, function() {  
+var server = http.createServer(app).listen(port, function(){  
 	console.log('Express server listening on port ' + port);
 });
