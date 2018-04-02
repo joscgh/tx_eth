@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "abi-decoder": "^1.1.0",
     "express": "^4.16.3",
     "http": "0.0.0",
     "mssql": "^4.1.0",

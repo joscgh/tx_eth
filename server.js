@@ -1,11 +1,14 @@
 var express = require('express')  
 var http = require('http')  
 var app = express()  
-var port = process.env.PORT || 8080
+var port = process.env.PORT || 8000
 var path = require('path');
 var Web3  = require('web3');
-
+const abiDecoder = require('abi-decoder'); 
 var mysql = require('mysql');
+
+const testABI = [{"constant":false,"inputs":[{"name":"_modelo","type":"string"},{"name":"_matricula","type":"string"}],"name":"setCarro","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getCarro","outputs":[{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}];
+abiDecoder.addABI(testABI);
 
 var conn = mysql.createConnection({
 	host: "localhost",
@@ -51,12 +54,23 @@ ws.on('message', function incoming(data){
 			{
 				console.log(pResult);
 				console.log(bCount);
+				var decoder = abiDecoder.decodeMethod(pResult.input);
+				console.log(decoder);
 				var query = conn.query("INSERT INTO transactions VALUES (null,'"+pResult.from+"','"+pResult.to+"','"+pResult.value+"','"+pResult.hash+"','"+pResult.gas+"','"+pResult.gasPrice+"','"+pResult.blockNumber+"',CURRENT_TIMESTAMP(),"+bCount+")",function(err,rows){
                     if(err){
                         console.log(err);
                         return next("Mysql error, check your query");
                     }
                 });
+                if(decoder != undefined)
+                {
+                	var query = conn.query("INSERT INTO carrocontract VALUES (null,'"+decoder['params'][0]['value']+"','"+decoder['params'][1]['value']+"','"+pResult.hash+"')",function(err,rows){
+                    	if(err){
+                        	console.log(err);
+                        	return next("Mysql error, check your query");
+                    	}
+                	});
+                }
 			}
 		}
   	}
