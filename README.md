@@ -13,5 +13,5 @@ luego de tener la red funcionando se inicilaiza el cliente
 geth attach ipc:\\.\pipe\geth.ipc
 
 luego teclear
-miner.start(1)
+miner.start(1) y 
 eth.mining()
