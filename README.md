@@ -1,4 +1,5 @@
 # tx_eth
+App para detectar las transacciones ya minadas en la red ethereum por me dio websockets
 Puede funcionar con red privada o con la red principal de Ethereum
 si quieres  una red privada he aqui como hacerlo https://ethereumchile.cl/2017/09/29/crea-tu-propia-blockchain-privada-con-ethereum/
 
@@ -10,3 +11,7 @@ geth --datadir "BlockchainETHCL" --networkid 65535 --nodiscover console --rpc --
 luego de tener la red funcionando se inicilaiza el cliente
 
 geth attach ipc:\\.\pipe\geth.ipc
+
+luego teclear
+miner.start(1)
+eth.mining()
